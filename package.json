@@ -1,0 +1,21 @@
+{
+  "name": "node-red-contrib-bitrix24",
+  "node-red": {
+    "nodes": {
+      "bitrix-webhook-auth": "./nodes/bitrix-webhook-auth.js",
+      "bitrix-lead": "./nodes/bitrix-lead.js"
+    }
+  },
+  "version": "0.1.0",
+  "description": "Node-RED nodes for Bitrix24 platform.",
+  "main": "index.js",
+  "keywords": [
+    "node-red",
+    "bitrix24"
+  ],
+  "author": "Diego Lopes",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.19.0"
+  }
+}

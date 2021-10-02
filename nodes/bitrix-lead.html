@@ -1,0 +1,37 @@
+<script type="text/javascript">
+  RED.nodes.registerType("bitrix-lead", {
+    category: "integration",
+    color: "#fff",
+    defaults: {
+      auth: {
+        value: "",
+        type: "bitrix-webhook-auth",
+      },
+      name: {
+        value: "",
+      },
+    },
+    inputs: 1,
+    outputs: 1,
+    icon: "icon.png",
+    label: function () {
+      return this.name || "bitrix lead";
+    },
+  });
+</script>
+
+<script type="text/x-red" data-template-name="bitrix-lead">
+  <div class="form-row">
+    <label for="node-input-auth"><i class="fa fa-user"></i> Auth</label>
+    <input type="text" id="node-input-auth">
+  </div>
+
+  <div class="form-row">
+      <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+      <input type="text" id="node-input-name" placeholder="Name">
+  </div>
+</script>
+
+<script type="text/x-red" data-help-name="bitrix-lead">
+  <p>Bitrix lead</p>
+</script>
