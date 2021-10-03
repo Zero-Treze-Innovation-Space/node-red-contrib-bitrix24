@@ -1,11 +1,15 @@
 <script type="text/javascript">
-  RED.nodes.registerType("bitrix-lead", {
+  RED.nodes.registerType("bitrix crm", {
     category: "integration",
     color: "#fff",
     defaults: {
       auth: {
         value: "",
         type: "bitrix-webhook-auth",
+        required: true
+      },
+      module: {
+        value: "contact",
         required: true
       },
       method: {
@@ -20,19 +24,27 @@
     outputs: 1,
     icon: "icon.png",
     label: function () {
-      return this.name || "bitrix lead";
+      return this.name || `bitrix ${this.method} ${this.module}`;
     },
   });
 </script>
 
-<script type="text/x-red" data-template-name="bitrix-lead">
+<script type="text/x-red" data-template-name="bitrix crm">
   <div class="form-row">
     <label for="node-input-auth"><i class="fa fa-user"></i> Auth</label>
     <input type="text" id="node-input-auth">
   </div>
 
   <div class="form-row">
-    <label for="node-input-method"><i class="fa fa-bars"></i> Method</label>
+    <label for="node-input-module"><i class="fa fa-bars"></i> Module</label>
+    <select id="node-input-module">
+      <option value="contact">Contact</option>
+      <option value="lead">Lead</option>
+    </select>
+  </div>
+
+  <div class="form-row">
+    <label for="node-input-method"><i class="fa fa-cogs"></i> Method</label>
     <select id="node-input-method">
       <option selected value="add">Add</option>
       <option disabled value="get">Get</option>
@@ -48,6 +60,6 @@
   </div>
 </script>
 
-<script type="text/x-red" data-help-name="bitrix-lead">
-  <p>Bitrix lead</p>
+<script type="text/x-red" data-help-name="bitrix crm">
+  <p>Bitrix CRM</p>
 </script>

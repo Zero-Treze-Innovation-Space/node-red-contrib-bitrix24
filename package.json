@@ -3,7 +3,7 @@
   "node-red": {
     "nodes": {
       "bitrix-webhook-auth": "./nodes/bitrix-webhook-auth.js",
-      "bitrix-lead": "./nodes/bitrix-lead.js"
+      "bitrix crm": "./nodes/bitrix-crm.js"
     }
   },
   "version": "0.1.0",

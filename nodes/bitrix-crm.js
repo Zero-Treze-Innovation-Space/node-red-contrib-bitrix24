@@ -1,26 +1,25 @@
-const createClient = require("../lib/client")
-const createLeadService = require("../lib/services/lead-service");
-const createStatusNotifier = require("../lib/status-notifier");
+const BitrixContext = require("../lib/bitrix-context")
+const modules = require("../lib/modules").crm
 
 module.exports = function (RED) {
   "use strict";
   
-  function BitrixLead(n) {
+  function BitrixCRM(n) {
     RED.nodes.createNode(this, n)
     
     // Getting config vars
     const authNode = RED.nodes.getNode(n.auth)
     const portalName = authNode.portalName
     const token = authNode.credentials.token
+    const bx24Module = n.module
     const method = n.method
-    
-    const client = createClient({ portalName, token })
-    const leadService = createLeadService({ client })
+    const bx24 = new BitrixContext()
+    bx24.setModule(new modules[bx24Module]({ portalName, token }))
 
     this.on("input", ((msg, send, done) => {
       this.status({})
       const { payload, query } = msg
-      leadService[method]({ payload, query })
+      bx24[method]({ payload, query })
         .then(data => {
           msg.payload = data
           send(msg)
@@ -33,5 +32,5 @@ module.exports = function (RED) {
         .finally(() => done())
     }))
   }
-  RED.nodes.registerType("bitrix-lead", BitrixLead);
+  RED.nodes.registerType("bitrix crm", BitrixCRM);
 };
