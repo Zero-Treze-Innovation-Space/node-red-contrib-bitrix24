@@ -6,7 +6,7 @@
       "bitrix crm": "./nodes/bitrix-crm.js"
     }
   },
-  "version": "0.1.0",
+  "version": "1.0.0-beta",
   "description": "Node-RED nodes for Bitrix24 platform.",
   "main": "index.js",
   "keywords": [
