@@ -18,8 +18,8 @@ module.exports = function (RED) {
 
     this.on("input", ((msg, send, done) => {
       this.status({})
-      const { payload, query } = msg
-      bx24[method]({ payload, query })
+      const { payload, id } = msg
+      bx24[method]({ payload, id })
         .then(data => {
           msg.payload = data
           send(msg)
