@@ -23,13 +23,14 @@ module.exports = function (RED) {
         .then(data => {
           msg.payload = data
           send(msg)
+          done()
         })
-        .catch(({ response }) => {
-          const { status, statusText } = response
+        .catch(error => {
+          const { status, statusText } = error.response
           const text = `[${status}] ${statusText}`
           this.status({ text, fill: "red", shape: "ring" })
+          done(error)
         })
-        .finally(() => done())
     }))
   }
   RED.nodes.registerType("bitrix crm", BitrixCRM);
